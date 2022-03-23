@@ -12,8 +12,7 @@ lost after restarting the application.
 
 To run the service:
   1. Use your local mvn or the mvn wrapper to run the application: ./mvnw spring-boot:run or mvn spring-boot:run.
-  2. Or you can use the jar file: java -jar HistoricalNBAService-0.0.1-SNAPSHOT.jar.
-  3. Or you can open the project in an IDE and start it from there.
+  2. Or you can open the project in an IDE and start it from there.
 
 You can learn about the API endpoints after running the application at /swagger-ui
 
