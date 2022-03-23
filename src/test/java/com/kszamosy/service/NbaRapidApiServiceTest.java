@@ -73,34 +73,27 @@ class NbaRapidApiServiceTest {
     @Test
     public void getStatsByGameId_successful() {
         var res = new NbaApiResponseResource<>();
-        var secondRes = new NbaApiResponseResource<>();
         var stat = new NbaPlayerStatResource();
         var meta = new NbaApiResponseMetaResource();
-        var secondMeta = new NbaApiResponseMetaResource();
 
         stat.setName("Test Player");
 
         meta.setCurrentPage(1);
         meta.setNextPage(1);
         meta.setTotalPages(2);
-        secondMeta.setCurrentPage(2);
-        secondMeta.setNextPage(2);
-        secondMeta.setTotalPages(2);
 
         res.setData(List.of(stat));
         res.setMeta(meta);
-        secondRes.setData(List.of(stat));
-        secondRes.setMeta(secondMeta);
 
         when(httpClientService.get(any(), any())).thenReturn(Optional.of("RESULT"));
         try (MockedStatic<DeserializerUtil> util = Mockito.mockStatic(DeserializerUtil.class)) {
-            util.when(() -> DeserializerUtil.deserializeWithParam(any(), any())).thenReturn(res, secondRes);
+            util.when(() -> DeserializerUtil.deserializeWithParam(any(), any())).thenReturn(res);
 
             var matches = nbaRapidApiService.getStatsByGameId(5L);
 
             assertNotNull(matches);
             assertFalse(matches.isEmpty());
-            assertEquals(List.of(stat, stat), matches);
+            assertEquals(List.of(stat), matches);
         }
     }
 }

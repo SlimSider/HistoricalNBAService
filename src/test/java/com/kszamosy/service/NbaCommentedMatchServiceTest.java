@@ -1,7 +1,6 @@
 package com.kszamosy.service;
 
 import com.kszamosy.exception.BadRequestException;
-import com.kszamosy.factory.NbaCommentedMatchResourceFactory;
 import com.kszamosy.model.entity.NbaMatchComment;
 import com.kszamosy.model.resource.NbaMatchResource;
 import com.kszamosy.model.resource.NbaPlayerStatResource;
@@ -27,6 +26,12 @@ class NbaCommentedMatchServiceTest {
 
     @Mock
     private NbaRapidApiService nbaRapidApiService;
+
+    @Mock
+    private NbaMatchDetailService nbaMatchDetailService;
+
+    @Mock
+    private NbaMatchCacheHelperService nbaMatchCacheHelperService;
 
     @InjectMocks
     private NbaCommentedMatchService nbaCommentedMatchService;

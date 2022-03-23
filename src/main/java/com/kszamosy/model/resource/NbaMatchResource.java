@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -30,6 +32,11 @@ public class NbaMatchResource extends NbaApiResponseBody {
     @JsonProperty("visitor_team")
     private void unpackAwayTeam(Map<String, Object> awayTeam) {
         this.awayTeam = awayTeam.get("full_name").toString();
+    }
+
+    @JsonProperty("date")
+    private void formatDate(String date) {
+        if (!isEmpty(date)) {this.date = date.substring(0, "YYYY-MM-DD".length());}
     }
 
 }

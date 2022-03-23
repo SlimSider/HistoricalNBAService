@@ -1,7 +1,5 @@
 package com.kszamosy.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kszamosy.exception.InternalErrorException;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.util.List;
 import java.util.Optional;
 
 @Service

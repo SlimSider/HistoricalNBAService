@@ -5,11 +5,13 @@ import com.kszamosy.model.resource.NbaApiResponseBody;
 import com.kszamosy.model.resource.NbaApiResponseResource;
 import com.kszamosy.model.resource.NbaMatchResource;
 import com.kszamosy.model.resource.NbaPlayerStatResource;
-import com.kszamosy.util.DeserializerUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static com.kszamosy.util.DeserializerUtil.deserializeSimple;
 import static com.kszamosy.util.DeserializerUtil.deserializeWithParam;
@@ -60,29 +62,11 @@ public class NbaRapidApiService {
 
     private <T extends NbaApiResponseBody> List<T> collectPageResponses(Class<T> clazz, String path, Map<String, Object> params) {
         var parameters = new HashMap<>(params);
-        parameters.put("page", 1);
+        parameters.put("per_page", 35);
 
         var res = executeCall(clazz, path, parameters)
                 .orElseThrow(() -> new NotFoundException("Couldn't find results for params: " + params));
-        var meta = res.getMeta();
-
-        if (meta.getCurrentPage() >= meta.getTotalPages()) {
-            return res.getData();
-        }
-
-        var resources = new ArrayList<>(res.getData());
-        parameters.put("page", res.getMeta().getNextPage());
-        while (res.getMeta().getCurrentPage() < res.getMeta().getTotalPages()) {
-            var r = executeCall(clazz, path, parameters);
-            if (r.isPresent()) {
-                res = r.get();
-                resources.addAll(res.getData());
-            } else {
-                break;
-            }
-        }
-
-        return resources;
+        return res.getData();
     }
 
     private <T extends NbaApiResponseBody> Optional<NbaApiResponseResource<T>> executeCall(Class<T> clazz, String path, Map<String, Object> params) {

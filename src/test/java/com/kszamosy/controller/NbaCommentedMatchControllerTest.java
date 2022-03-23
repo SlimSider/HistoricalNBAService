@@ -1,9 +1,7 @@
 package com.kszamosy.controller;
 
 import com.kszamosy.model.resource.NbaCommentedMatchResource;
-import com.kszamosy.model.resource.NbaMatchResource;
 import com.kszamosy.service.NbaCommentedMatchService;
-import com.kszamosy.service.NbaRapidApiService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

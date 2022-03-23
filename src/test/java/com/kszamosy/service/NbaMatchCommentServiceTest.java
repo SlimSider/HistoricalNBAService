@@ -3,7 +3,7 @@ package com.kszamosy.service;
 import com.kszamosy.exception.BadRequestException;
 import com.kszamosy.exception.NotFoundException;
 import com.kszamosy.model.entity.NbaMatchComment;
-import com.kszamosy.repository.NbaCommentRepository;
+import com.kszamosy.repository.NbaMatchCommentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class NbaMatchCommentServiceTest {
 
     @Mock
-    private NbaCommentRepository nbaCommentRepository;
+    private NbaMatchCommentRepository nbaCommentRepository;
 
     @Mock
     private NbaRapidApiService nbaRapidApiService;

@@ -3,7 +3,7 @@ package com.kszamosy.service;
 import com.kszamosy.exception.BadRequestException;
 import com.kszamosy.exception.NotFoundException;
 import com.kszamosy.model.entity.NbaMatchComment;
-import com.kszamosy.repository.NbaCommentRepository;
+import com.kszamosy.repository.NbaMatchCommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,10 @@ import static java.util.Objects.isNull;
 @Slf4j
 public class NbaMatchCommentService {
 
-    private final NbaCommentRepository nbaCommentRepository;
+    private final NbaMatchCommentRepository nbaCommentRepository;
     private final NbaRapidApiService nbaRapidApiService;
 
-    public NbaMatchCommentService(NbaCommentRepository nbaCommentRepository, NbaRapidApiService nbaRapidApiService) {
+    public NbaMatchCommentService(NbaMatchCommentRepository nbaCommentRepository, NbaRapidApiService nbaRapidApiService) {
         this.nbaCommentRepository = nbaCommentRepository;
         this.nbaRapidApiService = nbaRapidApiService;
     }
